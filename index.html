@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soldato Coffee — Forged in Discipline. Brewed to Perfection.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* =====================
+     RESET & VARIABLES
+  ===================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #1a3a2a;
+    --green-deep: #0f2219;
+    --green-light: #234d38;
+    --white: #ffffff;
+    --red: #c0392b;
+    --red-dark: #a93226;
+    --cream: #f8f5ef;
+    --text-body: #2c2c2c;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-elegant: 'Cormorant Garamond', serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text-body);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+
+  /* =====================
+     NAV
+  ===================== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 68px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--white);
+    letter-spacing: 0.12em;
+  }
+  .nav-logo span { color: var(--red); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.82);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--red);
+    color: var(--white) !important;
+    padding: 9px 22px;
+    font-weight: 500 !important;
+    border-radius: 4px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--red-dark) !important; color: var(--white) !important; }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* =====================
+     HERO
+  ===================== */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Slideshow container */
+  .slide-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .slide-item {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+  .slide-item.active { opacity: 1; }
+
+  .slide-item video,
+  .slide-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Dark overlay */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10,20,15,0.55);
+    z-index: 1;
+  }
+
+  /* Dot texture */
+  .hero-texture {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E");
+  }
+
+  /* Hero content */
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 0 24px;
+    animation: heroFadeUp 1.2s ease 0.3s both;
+  }
+
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 12vw, 10rem);
+    color: var(--white);
+    line-height: 0.92;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-title .line2 { display: block; color: var(--white); }
+
+  .hero-tagline {
+    font-family: var(--font-elegant);
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+    color: rgba(255,255,255,0.88);
+    margin-top: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: all 0.25s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-red {
+    background: var(--red);
+    color: var(--white);
+  }
+  .btn-red:hover { background: var(--red-dark); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid rgba(255,255,255,0.55);
+  }
+  .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+  /* Slide dots */
+  .slide-dots {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    border: 1px solid rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .dot.active {
+    background: var(--red);
+    border-color: var(--red);
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  /* Scroll cue */
+  .scroll-cue {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.55;
+    animation: bounce 2s infinite;
+  }
+  .scroll-cue span {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+    font-family: var(--font-body);
+  }
+  .scroll-arrow {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* =====================
+     SECTION COMMON
+  ===================== */
+  .section-label {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--red);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: 0.04em;
+  }
+
+  .section-subtitle {
+    font-family: var(--font-elegant);
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    font-style: italic;
+    color: rgba(0,0,0,0.55);
+    margin-top: 12px;
+    line-height: 1.7;
+  }
+
+  /* =====================
+     TRUST BAR
+  ===================== */
+  .trust-bar {
+    background: var(--green-deep);
+    padding: 24px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+    overflow: hidden;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 40px;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+  .trust-item:last-child { border-right: none; }
+
+  .trust-icon {
+    font-size: 1rem;
+    color: var(--red);
+  }
+
+  .trust-text {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* =====================
+     PRODUCTS
+  ===================== */
+  .products {
+    padding: 100px 24px;
+    background: var(--cream);
+    text-align: center;
+  }
+
+  .products-header { margin-bottom: 60px; }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .product-card {
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.13);
+  }
+
+  .product-img {
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+  }
+  .product-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .product-card:hover .product-img img { transform: scale(1.04); }
+
+  .product-badge {
+    position: absolute;
+    top: 16px; left: 16px;
+    background: var(--green);
+    color: var(--white);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 3px;
+  }
+
+  .product-body {
+    padding: 28px;
+  }
+
+  .product-name {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    letter-spacing: 0.05em;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  .product-roast {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+
+  .product-desc {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(0,0,0,0.6);
+    margin-bottom: 24px;
+  }
+
+  /* =====================
+     STORY
+  ===================== */
+  .story {
+    padding: 100px 24px;
+    background: var(--white);
+  }
+
+  .story-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .story-text p {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: rgba(0,0,0,0.65);
+    margin-top: 20px;
+  }
+  .story-text p + p { margin-top: 16px; }
+
+  .story-signature {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .story-sig-name {
+    font-family: var(--font-elegant);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--green);
+  }
+  .story-sig-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    margin-top: 2px;
+  }
+
+  .sig-line {
+    width: 40px; height: 1px;
+    background: var(--red);
+  }
+
+  .story-image {
+    height: 560px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+  .story-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .story-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(192,57,43,0.2);
+    border-radius: 8px;
+    pointer-events: none;
+  }
+
+  /* =====================
+     WHY SOLDATO
+  ===================== */
+  .why {
+    padding: 100px 24px;
+    background: var(--green);
+    text-align: center;
+  }
+
+  .why .section-label { color: var(--red); }
+  .why .section-title { color: var(--white); }
+  .why .section-subtitle { color: rgba(255,255,255,0.55); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    max-width: 1100px;
+    margin: 60px auto 0;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .why-tile {
+    padding: 48px 36px;
+    background: rgba(255,255,255,0.04);
+    border-right: 1px solid rgba(255,255,255,0.08);
+    text-align: left;
+    transition: background 0.3s;
+  }
+  .why-tile:last-child { border-right: none; }
+  .why-tile:hover { background: rgba(255,255,255,0.08); }
+
+  .why-icon {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .why-name {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .why-desc {
+    font-size: 0.84rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .why-accent {
+    display: block;
+    width: 28px; height: 2px;
+    background: var(--red);
+    margin-bottom: 16px;
+  }
+
+  /* =====================
+     TESTIMONIALS
+  ===================== */
+  .testimonials {
+    padding: 100px 24px;
+    background: var(--white);
+    text-align: center;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 28px;
+    max-width: 1100px;
+    margin: 60px auto 0;
+  }
+
+  .testi-card {
+    padding: 40px 36px;
+    background: var(--cream);
+    border-radius: 8px;
+    text-align: left;
+    position: relative;
+    transition: box-shadow 0.3s;
+  }
+  .testi-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+
+  .testi-quote-mark {
+    font-family: var(--font-elegant);
+    font-size: 5rem;
+    line-height: 0.8;
+    color: var(--red);
+    opacity: 0.25;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .testi-text {
+    font-family: var(--font-elegant);
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.75;
+    color: rgba(0,0,0,0.72);
+    margin-bottom: 28px;
+  }
+
+  .testi-stars {
+    color: var(--red);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+
+  .testi-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .testi-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .testi-name {
+    font-weight: 500;
+    font-size: 0.88rem;
+    color: var(--green);
+    letter-spacing: 0.04em;
+  }
+  .testi-location {
+    font-size: 0.75rem;
+    color: rgba(0,0,0,0.4);
+    margin-top: 2px;
+  }
+
+  /* =====================
+     ORDER / CONTACT
+  ===================== */
+  .order {
+    padding: 100px 24px;
+    background: var(--green-deep);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .order::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(255,255,255,0.025)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .order-content { position: relative; z-index: 1; }
+
+  .order .section-label { color: var(--red); }
+  .order .section-title { color: var(--white); }
+
+  .order-phone {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 6rem);
+    color: var(--white);
+    letter-spacing: 0.06em;
+    margin-top: 24px;
+    display: block;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .order-phone:hover { color: var(--red); }
+
+  .order-note {
+    font-family: var(--font-elegant);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.5);
+    margin-top: 16px;
+    margin-bottom: 40px;
+  }
+
+  .order-ctas {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-wa {
+    background: #25D366;
+    color: var(--white);
+  }
+  .btn-wa:hover { background: #1db954; transform: translateY(-2px); }
+
+  /* =====================
+     FOOTER
+  ===================== */
+  footer {
+    background: #060e09;
+    padding: 60px 24px 32px;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-brand-name {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .footer-brand-name span { color: var(--red); }
+
+  .footer-tagline {
+    font-family: var(--font-elegant);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .footer-phone {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.6);
+  }
+  .footer-phone a { color: rgba(255,255,255,0.75); }
+  .footer-phone a:hover { color: var(--white); }
+
+  .footer-col-title {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-links a {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.55);
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--white); }
+
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 28px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.28);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-bottom a { color: rgba(255,255,255,0.4); }
+  .footer-bottom a:hover { color: var(--white); }
+
+  /* =====================
+     FLOATING WHATSAPP
+  ===================== */
+  .float-wa {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999;
+    width: 58px; height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+    transition: transform 0.25s, box-shadow 0.25s;
+    text-decoration: none;
+  }
+  .float-wa:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 28px rgba(37,211,102,0.6);
+  }
+  .float-wa svg { width: 28px; height: 28px; }
+
+  /* =====================
+     MOBILE NAV
+  ===================== */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+
+    .nav-links {
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: var(--green-deep);
+      flex-direction: column;
+      padding: 28px 24px;
+      gap: 20px;
+      transform: translateY(-110%);
+      transition: transform 0.35s ease;
+      border-bottom: 2px solid var(--red);
+    }
+    .nav-links.open { transform: translateY(0); }
+    .nav-hamburger { display: flex; }
+
+    .story-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .story-image { height: 320px; }
+
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .why-tile { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+    .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+
+    .trust-item { padding: 10px 20px; }
+
+    .float-wa { bottom: 20px; right: 20px; width: 52px; height: 52px; }
+  }
+
+  @media (max-width: 500px) {
+    .why-grid { grid-template-columns: 1fr; }
+    .hero-ctas { flex-direction: column; align-items: center; }
+    .order-ctas { flex-direction: column; align-items: center; }
+  }
+
+  /* =====================
+     SCROLL REVEAL
+  ===================== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">SOLDATO <span>COFFEE</span></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#products">Our Coffee</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#why">Why Soldato</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://wa.me/27713366146" target="_blank" class="nav-cta">Order Now</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="hero">
+  <div class="slide-bg" id="slideBg">
+    <!-- Slide 1: Video -->
+    <div class="slide-item active" data-type="video">
+      <video muted playsinline loop preload="auto" id="vid0">
+        <source src="beansonbook.mp4" type="video/mp4">
+      </video>
+    </div>
+    <!-- Slide 2: Video -->
+    <div class="slide-item" data-type="video">
+      <video muted playsinline loop preload="auto" id="vid1">
+        <source src="heroofbeans.mp4" type="video/mp4">
+      </video>
+    </div>
+    <!-- Slide 3: Image -->
+    <div class="slide-item" data-type="image">
+      <img src="filter.jpg" alt="Filter coffee" loading="lazy">
+    </div>
+    <!-- Slide 4: Image -->
+    <div class="slide-item" data-type="image">
+      <img src="beans.jpg" alt="Coffee beans" loading="lazy">
+    </div>
+  </div>
+
+  <div class="hero-overlay"></div>
+  <div class="hero-texture"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">South African Premium Coffee</p>
+    <h1 class="hero-title">
+      SOLDATO<span class="line2">COFFEE</span>
+    </h1>
+    <p class="hero-tagline">Forged in discipline. Brewed to perfection.</p>
+    <div class="hero-ctas">
+      <a href="tel:0713366146" class="btn btn-outline">📞 Call Us</a>
+      <a href="https://wa.me/27713366146" target="_blank" class="btn btn-red">💬 WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="slide-dots" id="slideDots">
+    <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+    <button class="dot" data-index="1" aria-label="Slide 2"></button>
+    <button class="dot" data-index="2" aria-label="Slide 3"></button>
+    <button class="dot" data-index="3" aria-label="Slide 4"></button>
+  </div>
+
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ===================== TRUST BAR ===================== -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <span class="trust-icon">◆</span>
+    <span class="trust-text">Single Origin Beans</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">◆</span>
+    <span class="trust-text">Small Batch Roasted</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">◆</span>
+    <span class="trust-text">South African Owned</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">◆</span>
+    <span class="trust-text">Premium Grade Only</span>
+  </div>
+</div>
+
+<!-- ===================== PRODUCTS ===================== -->
+<section class="products" id="products">
+  <div class="products-header reveal">
+    <span class="section-label">The Range</span>
+    <h2 class="section-title">Our Coffee</h2>
+    <p class="section-subtitle">Three expressions. One standard of excellence.</p>
+  </div>
+
+  <div class="products-grid">
+    <!-- Card 1 -->
+    <div class="product-card reveal reveal-delay-1">
+      <div class="product-img">
+        <img src="filter.jpg" alt="Soldato Espresso" loading="lazy">
+        <span class="product-badge">Signature</span>
+      </div>
+      <div class="product-body">
+        <p class="product-roast">Dark Roast · Intense</p>
+        <h3 class="product-name">THE ESPRESSO</h3>
+        <p class="product-desc">Commanding and complex. A single-origin espresso roasted to extract every layer of dark chocolate, toasted wood, and stone fruit. This is coffee with conviction — not for the timid.</p>
+        <a href="https://wa.me/27713366146?text=I'd%20like%20to%20order%20The%20Espresso" target="_blank" class="btn btn-red">Order Now</a>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="product-card reveal reveal-delay-2">
+      <div class="product-img">
+        <img src="beans.jpg" alt="Soldato Filter" loading="lazy">
+        <span class="product-badge">Popular</span>
+      </div>
+      <div class="product-body">
+        <p class="product-roast">Medium Roast · Clean</p>
+        <h3 class="product-name">THE FILTER</h3>
+        <p class="product-desc">Precision-roasted for clarity. Soft citrus brightness, a silken body, and a long, clean finish. The Filter is a study in restraint — every detail stripped down to pure expression.</p>
+        <a href="https://wa.me/27713366146?text=I'd%20like%20to%20order%20The%20Filter" target="_blank" class="btn btn-red">Order Now</a>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="product-card reveal reveal-delay-3">
+      <div class="product-img">
+        <img src="beans.jpg" alt="Soldato Cold Brew" loading="lazy">
+        <span class="product-badge">Limited</span>
+      </div>
+      <div class="product-body">
+        <p class="product-roast">Slow Steep · Refined</p>
+        <h3 class="product-name">THE COLD BREW</h3>
+        <p class="product-desc">Sixteen hours. One result. Our Cold Brew rewards patience with extraordinary depth — velvet mouthfeel, whispers of brown sugar, and zero bitterness. Discipline in a glass.</p>
+        <a href="https://wa.me/27713366146?text=I'd%20like%20to%20order%20The%20Cold%20Brew" target="_blank" class="btn btn-red">Order Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STORY ===================== -->
+<section class="story" id="story">
+  <div class="story-inner">
+    <div class="story-text reveal">
+      <span class="section-label">The Mission</span>
+      <h2 class="section-title">Our Story</h2>
+      <p>Soldato was born from a single belief: that truly exceptional coffee is an act of discipline, not luck. We don't chase trends. We study the craft — sourcing, roasting, and delivering with the precision of a soldier who never cuts corners.</p>
+      <p>Our beans are selected from single-origin farms where the elevation, soil, and harvest season are tracked with the same rigour a general brings to a campaign. Every batch is small. Every roast is monitored to the second. Nothing ships unless it meets the standard.</p>
+      <p>We are proudly South African — rooted in the Western Cape and built on the belief that our country deserves world-class coffee on its own terms. No shortcuts. No compromises. Only the very best, every time.</p>
+      <div class="story-signature">
+        <div class="sig-line"></div>
+        <div>
+          <div class="story-sig-name">Marco de Villiers</div>
+          <div class="story-sig-title">Founder & Head Roaster</div>
+        </div>
+      </div>
+    </div>
+    <div class="story-image reveal reveal-delay-1">
+      <img src="beans.jpg" alt="Soldato Coffee beans" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHY SOLDATO ===================== -->
+<section class="why" id="why">
+  <span class="section-label">Our Standards</span>
+  <h2 class="section-title">Why Soldato</h2>
+  <p class="section-subtitle">Four principles. Zero exceptions.</p>
+
+  <div class="why-grid">
+    <div class="why-tile reveal">
+      <span class="why-icon">🌍</span>
+      <span class="why-accent"></span>
+      <h3 class="why-name">Single Origin</h3>
+      <p class="why-desc">Every bag traced to one farm, one region, one story. Transparency is non-negotiable.</p>
+    </div>
+    <div class="why-tile reveal reveal-delay-1">
+      <span class="why-icon">🔥</span>
+      <span class="why-accent"></span>
+      <h3 class="why-name">Slow Roasted</h3>
+      <p class="why-desc">We never rush the roast. Low and slow unlocks complexity that high-heat shortcuts destroy.</p>
+    </div>
+    <div class="why-tile reveal reveal-delay-2">
+      <span class="why-icon">⚔️</span>
+      <span class="why-accent"></span>
+      <h3 class="why-name">No Compromise</h3>
+      <p class="why-desc">Sub-standard batches are discarded, not sold. Our name goes on every bag — it means something.</p>
+    </div>
+    <div class="why-tile reveal reveal-delay-3">
+      <span class="why-icon">🤝</span>
+      <span class="why-accent"></span>
+      <h3 class="why-name">Direct Trade</h3>
+      <p class="why-desc">We buy directly from farmers at premium prices. Better for them. Better for the cup. Full stop.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="testimonials" id="testimonials">
+  <div class="reveal">
+    <span class="section-label">Field Reports</span>
+    <h2 class="section-title">What People Say</h2>
+    <p class="section-subtitle">South Africans who've made the switch. And never looked back.</p>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testi-card reveal reveal-delay-1">
+      <span class="testi-quote-mark">"</span>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">I've tried specialty roasters across Cape Town and Joburg. Nothing comes close to Soldato's Espresso. It's the only thing I'll drink before a board meeting — it sets the tone.</p>
+      <div class="testi-meta">
+        <div class="testi-avatar">LV</div>
+        <div>
+          <div class="testi-name">Liesel van der Merwe</div>
+          <div class="testi-location">Cape Town, Western Cape</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal reveal-delay-2">
+      <span class="testi-quote-mark">"</span>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">The Cold Brew changed how I understand coffee. It's like they distilled patience into a bottle. Smooth, deep, absolutely no bitterness. I order a fresh batch every two weeks without fail.</p>
+      <div class="testi-meta">
+        <div class="testi-avatar">TN</div>
+        <div>
+          <div class="testi-name">Thabo Nkosi</div>
+          <div class="testi-location">Johannesburg, Gauteng</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal reveal-delay-3">
+      <span class="testi-quote-mark">"</span>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">As a barista I'm picky about what goes through my machine. Soldato's Filter is clean, consistent, and tells a story in every cup. I've introduced three other cafés to this brand — that's my review.</p>
+      <div class="testi-meta">
+        <div class="testi-avatar">RC</div>
+        <div>
+          <div class="testi-name">Riyaad Cassiem</div>
+          <div class="testi-location">Stellenbosch, Western Cape</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ORDER / CONTACT ===================== -->
+<section class="order" id="contact">
+  <div class="order-content reveal">
+    <span class="section-label">Ready to Order</span>
+    <h2 class="section-title">Get In Touch</h2>
+    <a href="tel:0713366146" class="order-phone">071 336 6146</a>
+    <p class="order-note">Call or WhatsApp to place an order, enquire about bulk pricing, or discuss wholesale.</p>
+    <div class="order-ctas">
+      <a href="https://wa.me/27713366146" target="_blank" class="btn btn-wa">💬 WhatsApp Us</a>
+      <a href="tel:0713366146" class="btn btn-outline">📞 Call Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">SOLDATO <span>COFFEE</span></div>
+      <div class="footer-tagline">Forged in discipline.<br>Brewed to perfection.</div>
+      <div class="footer-phone">
+        <a href="tel:0713366146">071 336 6146</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#products">Our Coffee</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#why">Why Soldato</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Order</div>
+      <ul class="footer-links">
+        <li><a href="https://wa.me/27713366146" target="_blank">WhatsApp Order</a></li>
+        <li><a href="tel:0713366146">Call to Order</a></li>
+        <li><a href="https://wa.me/27713366146?text=Wholesale%20enquiry" target="_blank">Wholesale</a></li>
+        <li><a href="https://wa.me/27713366146?text=Corporate%20enquiry" target="_blank">Corporate</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2025 Soldato Coffee. All rights reserved.</span>
+    <span>Proudly South African · Saldanha, Western Cape</span>
+  </div>
+</footer>
+
+<!-- ===================== FLOATING WHATSAPP ===================== -->
+<a href="https://wa.me/27713366146" target="_blank" class="float-wa" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.685 4.607 1.874 6.488L4 29l7.717-1.845A11.93 11.93 0 0016 27c6.627 0 12-5.373 12-12S22.627 3 16 3z" fill="white"/>
+    <path d="M21.5 18.5c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.68-1.64-.93-2.24-.24-.59-.49-.51-.68-.52h-.58c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.09 3.2 5.07 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.19-.57-.34z" fill="#25D366"/>
+  </svg>
+</a>
+
+<!-- ===================== JS ===================== -->
+<script>
+  /* ---------- NAV HAMBURGER ---------- */
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  /* ---------- HERO SLIDESHOW ---------- */
+  const slides   = Array.from(document.querySelectorAll('.slide-item'));
+  const dots     = Array.from(document.querySelectorAll('.dot'));
+  const videos   = [document.getElementById('vid0'), document.getElementById('vid1')];
+  let current    = 0;
+  let timer      = null;
+  const DURATION = 6000; // ms per slide
+
+  function primeVideos() {
+    videos.forEach(v => {
+      if (!v) return;
+      v.muted       = true;
+      v.playsInline  = true;
+      v.load();
+      v.play().catch(() => {}); // silent fail if browser blocks
+    });
+  }
+
+  function goToSlide(idx) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+
+    // If this slide has a video, try to play it
+    const type = slides[current].getAttribute('data-type');
+    if (type === 'video') {
+      const vid = slides[current].querySelector('video');
+      if (vid) { vid.currentTime = 0; vid.play().catch(() => {}); }
+    }
+  }
+
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goToSlide(current + 1), DURATION);
+  }
+
+  dots.forEach(d => {
+    d.addEventListener('click', () => {
+      goToSlide(parseInt(d.getAttribute('data-index')));
+      startTimer();
+    });
+  });
+
+  // Init on DOMContentLoaded
+  document.addEventListener('DOMContentLoaded', () => {
+    primeVideos();
+    startTimer();
+  });
+
+  // Re-trigger on first touch (iOS autoplay unlock)
+  let touchUnlocked = false;
+  document.addEventListener('touchstart', () => {
+    if (touchUnlocked) return;
+    touchUnlocked = true;
+    primeVideos();
+  }, { passive: true, once: true });
+
+  /* ---------- SCROLL REVEAL ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer  = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealEls.forEach(el => observer.observe(el));
+
+  /* ---------- NAV SCROLL TINT ---------- */
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('main-nav');
+    if (window.scrollY > 60) {
+      nav.style.boxShadow = '0 2px 24px rgba(0,0,0,0.35)';
+    } else {
+      nav.style.boxShadow = 'none';
+    }
+  }, { passive: true });
+</script>
+</body>
+</html>
